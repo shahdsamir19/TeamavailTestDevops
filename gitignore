@@ -1,0 +1,12 @@
+# Node.js dependencies
+node_modules/
+
+# Output directory
+output/
+
+# OS files
+.DS_Store
+
+# Logs and environment
+npm-debug.log*
+.env
