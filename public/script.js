@@ -140,4 +140,26 @@ document.getElementById("saveBtn").addEventListener("click", async () => {
   } else {
     alert("Error saving history.");
   }
+  document.getElementById("downloadExcelBtn").addEventListener("click", () => {
+  const table = document.getElementById("tableBody");
+  const rows = Array.from(table.querySelectorAll("tr"));
+
+  const header = ["Name", "Week", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  const data = [header];
+
+  rows.forEach(row => {
+    const name = row.children[0].textContent;
+    const week = row.querySelector(".week-select").value;
+    const statuses = Array.from(row.querySelectorAll(".status-select")).map(sel => sel.value);
+
+    data.push([name, week, ...statuses]);
+  });
+
+  const worksheet = XLSX.utils.aoa_to_sheet(data);
+  const workbook = XLSX.utils.book_new();
+  XLSX.utils.book_append_sheet(workbook, worksheet, "TeamAvailability");
+
+  XLSX.writeFile(workbook, "team_availability.xlsx");
+});
+
 });

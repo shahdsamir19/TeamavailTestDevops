@@ -6,12 +6,6 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/shahdsamir19/TeamavailTestDevops.git'
-            }
-        }
-
         stage('Install Dependencies') {
             steps {
                 sh 'terraform init'
