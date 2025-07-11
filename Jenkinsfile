@@ -26,7 +26,7 @@ pipeline {
 
         stage('Run Docker Compose') {
             steps {
-                sh 'terraform apply'
+                sh 'terraform apply -auto-approve'
                 
             }
         }
