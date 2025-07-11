@@ -27,7 +27,7 @@ pipeline {
         stage('Run Docker Compose') {
             steps {
                 sh 'terraform apply'
-                #sh 'docker-compose up -d'
+                
             }
         }
     }
