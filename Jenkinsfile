@@ -14,7 +14,7 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                sh 'terraform init'
             }
         }
 
@@ -26,14 +26,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${IMAGE_NAME} ."
+                sh "terraform plan"
             }
         }
 
         stage('Run Docker Compose') {
             steps {
-                sh 'docker-compose down || true'
-                sh 'docker-compose up -d'
+                sh 'terraform apply'
+                #sh 'docker-compose up -d'
             }
         }
     }
